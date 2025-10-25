@@ -1,262 +1,204 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { Shield, QrCode, Activity, CheckCircle } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Shield, Package, Activity, Check, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-navy-base to-navy-darker text-foreground">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+    <div className="min-h-screen bg-gradient-to-br from-mint-light via-background to-secondary">
+      {/* Header */}
+      <header className="border-b border-border/50 bg-card/80 backdrop-blur-xl sticky top-0 z-50 shadow-card">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-2xl font-bold text-primary-foreground">M</span>
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-glow">
+              <span className="text-xl font-bold text-primary-foreground">M</span>
             </div>
-            <span className="text-xl font-bold">MedSupply Chain</span>
+            <span className="text-xl font-bold text-foreground">MedSupply Chain</span>
           </div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#mission" className="hover:text-primary transition-colors">Mission</a>
-            <a href="#services" className="hover:text-primary transition-colors">Services</a>
-            <a href="#impact" className="hover:text-primary transition-colors">Impact</a>
-          </div>
-          <Link to="/auth">
-            <Button variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              Se connecter
-            </Button>
-          </Link>
+          <Button 
+            onClick={() => navigate("/auth")}
+            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow transition-all hover:shadow-elevated"
+          >
+            Se connecter
+          </Button>
         </div>
-      </nav>
+      </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-fade-in">
-              <div className="inline-block">
-                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20">
-                  Expert Pharmaceutique Certifié
-                </span>
+      <section className="container mx-auto px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-up">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-sm font-medium text-primary mb-4">
+            <Shield className="w-4 h-4" />
+            Traçabilité médicale sécurisée
+          </div>
+          
+          <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">
+            La blockchain au service de la{" "}
+            <span className="text-primary">santé publique</span>
+          </h1>
+          
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Suivez chaque médicament de la fabrication au patient. 
+            Garantissez l'authenticité et luttez contre la contrefaçon grâce à Hedera Hashgraph.
+          </p>
+          
+          <div className="flex gap-4 justify-center pt-4">
+            <Button 
+              size="lg"
+              onClick={() => navigate("/auth")}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-glow transition-all hover:shadow-elevated text-lg px-8 h-12"
+            >
+              Commencer maintenant
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button 
+              size="lg"
+              variant="outline"
+              onClick={() => navigate("/verify")}
+              className="border-border hover:bg-accent hover:text-accent-foreground text-lg px-8 h-12"
+            >
+              Vérifier un médicament
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="text-center mb-12 animate-fade-up">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            Une solution complète de traçabilité
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Intégrez la blockchain Hedera pour une transparence totale de votre chaîne d'approvisionnement
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <Card className="bg-card border-border/50 shadow-card hover:shadow-elevated transition-all group animate-fade-in">
+            <CardContent className="pt-6">
+              <div className="mb-4 p-4 bg-primary/10 rounded-2xl w-fit group-hover:bg-primary/20 transition-colors">
+                <Shield className="w-8 h-8 text-primary" />
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                Sécurité et <span className="text-primary">Traçabilité</span> des Médicaments
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                Garantir l'authenticité de chaque médicament grâce à une traçabilité complète et infalsifiable, 
-                de la production à la distribution.
+              <h3 className="text-xl font-bold mb-2 text-foreground">Sécurité maximale</h3>
+              <p className="text-muted-foreground">
+                Enregistrement immuable sur Hedera Hashgraph pour une traçabilité infalsifiable
               </p>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <Link to="/auth">
-                  <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-primary/25 transition-all">
-                    Découvrir l'expertise →
-                  </Button>
-                </Link>
-                <Link to="/verify">
-                  <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10">
-                    Voir la démo
-                  </Button>
-                </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card border-border/50 shadow-card hover:shadow-elevated transition-all group animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <CardContent className="pt-6">
+              <div className="mb-4 p-4 bg-primary/10 rounded-2xl w-fit group-hover:bg-primary/20 transition-colors">
+                <Package className="w-8 h-8 text-primary" />
               </div>
-              <div className="flex flex-wrap gap-6 pt-6">
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                  <span>Traçabilité de bout en bout</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                  <span>Protection contre la contrefaçon</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                  <span>Conformité réglementaire totale</span>
-                </div>
+              <h3 className="text-xl font-bold mb-2 text-foreground">Traçabilité complète</h3>
+              <p className="text-muted-foreground">
+                Suivez chaque lot de médicament depuis la production jusqu'au patient final
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card border-border/50 shadow-card hover:shadow-elevated transition-all group animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <CardContent className="pt-6">
+              <div className="mb-4 p-4 bg-primary/10 rounded-2xl w-fit group-hover:bg-primary/20 transition-colors">
+                <Activity className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-foreground">Détection d'anomalies</h3>
+              <p className="text-muted-foreground">
+                Intelligence artificielle pour détecter automatiquement les incohérences dans la chaîne
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="container mx-auto px-6 py-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6 animate-fade-up">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                Pourquoi MedSupply Chain ?
+              </h2>
+              <div className="space-y-4">
+                {[
+                  "Authentification instantanée via QR code",
+                  "Réduction des risques de contrefaçon",
+                  "Conformité réglementaire automatique",
+                  "Transparence totale pour tous les acteurs",
+                  "Rapports et analytics en temps réel",
+                ].map((benefit, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="p-1 bg-primary/20 rounded-full mt-0.5">
+                      <Check className="w-4 h-4 text-primary" />
+                    </div>
+                    <p className="text-foreground font-medium">{benefit}</p>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="flex items-center justify-center animate-scale-in">
-              <div className="relative">
-                <div className="w-80 h-80 bg-gradient-to-br from-primary/20 to-primary/5 rounded-3xl flex items-center justify-center animate-glow">
-                  <div className="w-48 h-48 bg-primary rounded-2xl flex items-center justify-center">
-                    <Shield className="w-32 h-32 text-primary-foreground" />
+            
+            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 shadow-elevated animate-fade-in">
+              <CardContent className="p-8">
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <p className="text-5xl font-bold text-primary mb-2">99.9%</p>
+                    <p className="text-muted-foreground">Taux de disponibilité</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-5xl font-bold text-primary mb-2">&lt;2s</p>
+                    <p className="text-muted-foreground">Temps de vérification</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-5xl font-bold text-primary mb-2">0</p>
+                    <p className="text-muted-foreground">Contrefaçons détectées</p>
                   </div>
                 </div>
-                <div className="absolute -bottom-4 -right-4 bg-card border-2 border-primary rounded-2xl px-6 py-3">
-                  <p className="text-sm font-semibold text-primary">100% Sécurisé</p>
-                  <p className="text-xs text-muted-foreground">Technologie blockchain</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission Section */}
-      <section id="mission" className="py-20 px-6 bg-gradient-to-b from-transparent to-card/30">
-        <div className="container mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold mb-4">Une Mission Essentielle</h2>
-            <p className="text-lg text-muted-foreground">
-              Protéger les patients en garantissant l'intégrité de la chaîne d'approvisionnement pharmaceutique mondiale
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                <Shield className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Notre Mission</h3>
-              <p className="text-muted-foreground">
-                Assurer la traçabilité complète et infalsifiable des médicaments, de leur fabrication jusqu'à leur délivrance au patient.
-              </p>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                <CheckCircle className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Notre Engagement</h3>
-              <p className="text-muted-foreground">
-                Lutter efficacement contre la contrefaçon pharmaceutique et protéger la santé publique.
-              </p>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/10">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                <Activity className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Notre Approche</h3>
-              <p className="text-muted-foreground">
-                Détecter et résoudre les anomalies logistiques en temps réel grâce à des technologies de pointe.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="py-20 px-6">
-        <div className="container mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold mb-4">Services</h2>
-            <p className="text-lg text-muted-foreground">
-              MedSupply Chain combine blockchain, IA et design intuitif pour une protection maximale
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="bg-card rounded-2xl p-8 border border-border">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                <Shield className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-3">Blockchain Hedera</h3>
-              <p className="text-muted-foreground mb-4">
-                Enregistrement immuable de chaque transaction sur un réseau décentralisé haute performance
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Données impossibles à modifier</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Consensus rapide</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Faible coût énergétique</span>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                <Activity className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-3">Intelligence Artificielle</h3>
-              <p className="text-muted-foreground mb-4">
-                Détection automatique des anomalies dans la chaîne d'approvisionnement
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Analyse en temps réel</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Prédiction des risques</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Alertes automatiques</span>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                <QrCode className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-3">Traçabilité instantanée</h3>
-              <p className="text-muted-foreground mb-4">
-                Vérification en quelques secondes via QR code ou numéro de lot
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Scan mobile</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Résultats immédiats</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Historique complet</span>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                <CheckCircle className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-3">Sécurité maximale</h3>
-              <p className="text-muted-foreground mb-4">
-                Protection multi-niveaux contre les contrefaçons et fraudes
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Cryptographie avancée</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Authentification multi-facteurs</span>
-                </li>
-                <li className="flex items-center gap-2 text-sm">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                  <span>Audit permanent</span>
-                </li>
-              </ul>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section id="impact" className="py-20 px-6 bg-gradient-to-t from-card/30 to-transparent">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto bg-card rounded-3xl p-12 border border-primary/30 text-center">
-            <h2 className="text-4xl font-bold mb-4">Prêt à sécuriser votre chaîne d'approvisionnement ?</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Rejoignez les professionnels de santé qui font confiance à MedSupply Chain pour protéger leurs patients
+      <section className="container mx-auto px-6 py-20">
+        <Card className="bg-gradient-to-br from-primary to-primary/80 border-none shadow-elevated animate-fade-up">
+          <CardContent className="p-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+              Prêt à sécuriser votre chaîne d'approvisionnement ?
+            </h2>
+            <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+              Rejoignez les acteurs de la santé qui font confiance à MedSupply Chain
             </p>
-            <Link to="/auth">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-primary/25 transition-all">
-                Essayer maintenant →
-              </Button>
-            </Link>
-          </div>
-        </div>
+            <Button 
+              size="lg"
+              onClick={() => navigate("/auth")}
+              className="bg-background hover:bg-background/90 text-foreground shadow-elevated text-lg px-8 h-12"
+            >
+              Démarrer gratuitement
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </CardContent>
+        </Card>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-border">
-        <div className="container mx-auto text-center text-muted-foreground">
-          <p>© 2025 MedSupply Chain. Tous droits réservés.</p>
-          <p className="text-sm mt-2">Sécuriser la santé, un médicament à la fois.</p>
+      <footer className="border-t border-border/50 bg-card/50 backdrop-blur-xl">
+        <div className="container mx-auto px-6 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center">
+                <span className="text-sm font-bold text-primary-foreground">M</span>
+              </div>
+              <span className="font-semibold text-foreground">MedSupply Chain</span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              © 2024 MedSupply Chain. Propulsé par Hedera Hashgraph.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
